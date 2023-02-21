@@ -36,9 +36,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var qrbutton : Button
     private lateinit var qrcode : ImageView
     private lateinit var view : View
-    private lateinit var text1 : EditText
-    private lateinit var text2 : EditText
-    private lateinit var text3 : EditText
+    private lateinit var text1 : TextView
+    private lateinit var text2 : TextView
+    private lateinit var text3 : TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -79,8 +79,10 @@ class MainActivity : AppCompatActivity() {
                 }
                 qrtext.alpha=0.0f
                 qrbutton.alpha=0.0f
+                qrtext.isEnabled=false
+                qrbutton.isEnabled=false
                 view.alpha=0.0f
-                text1.setText("TICKET ID : " + abs((123456789..999999999).random()).toString())
+                text1.setText("TRANSACTION ID : " + abs((123456789..999999999).random()).toString())
                 text1.alpha=1.0f
                 text2.alpha=1.0f
                 text3.alpha=1.0f
@@ -91,6 +93,7 @@ class MainActivity : AppCompatActivity() {
 
         val imageView = findViewById<View>(R.id.layoutid)
         captureButton.setOnClickListener {
+            captureButton.isEnabled=false
             captureButton.alpha=0.0f
             val bitmap = getScreenShotFromView(imageView)
             if (bitmap != null) {
